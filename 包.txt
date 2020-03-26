@@ -1,0 +1,6 @@
+npm install koa-router koa-redis nodemailer
+
+npm install axios
+
+
+npm install koa-bodyparser koa-generic-session
