@@ -56,6 +56,7 @@ async function start () {
     port = process.env.PORT || 3000
   } = nuxt.options.server
   console.log('port', port);
+  console.log('host',  host)
   if (config.dev) {
     const builder = new Builder(nuxt)
     await builder.build()
