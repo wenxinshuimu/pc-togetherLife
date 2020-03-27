@@ -3,6 +3,7 @@ module.exports = {
     name: 'pc-meituan',
     script: 'server/index.js',
     exec_mode: "fork",
+    exec_interpreter:"babel-node", //此配置就是使用babel-node去执行nodejs文件
     env: {
       COMMON_VARIABLE: 'true'
     },
