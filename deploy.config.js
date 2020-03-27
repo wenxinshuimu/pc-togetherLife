@@ -18,8 +18,8 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://15277951017@gitee.com/wenxinshuimu/meituan.git',
       path: '/www/mpc-meituan/production',
-      'pre-deploy': 'sudo git fetch --all',
-      'post-deploy': 'sudo npm install && npm run build && npm start && pm2 startOrRestar deploy.config.js --env production',
+      'pre-deploy': 'git fetch --all',
+      'post-deploy': 'npm install && npm run build && npm start && pm2 startOrRestar deploy.config.js --env production',
 
     }
   }
