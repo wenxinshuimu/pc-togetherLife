@@ -14,6 +14,7 @@ module.exports = {
     production: {
       user: 'root',
       host: '120.76.112.200',
+      port: '44672',
       ref: 'origin/master',
       repo: 'https://gitee.com/wenxinshuimu/meituan.git',
       path: '/www/mpc-meituan/production',
