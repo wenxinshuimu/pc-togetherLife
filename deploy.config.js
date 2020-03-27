@@ -12,7 +12,7 @@ module.exports = {
 
   deploy: {
     production: {
-      user: 'root',
+      user: 'ading',
       host: '120.76.112.200',
       port: '44672',
       ref: 'origin/master',
