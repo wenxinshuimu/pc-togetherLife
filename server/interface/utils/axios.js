@@ -13,7 +13,7 @@ const env = require('../../../config/env');
 const isPrd = env.isPrd;
 console.log('isPrd', isPrd)
 const axiosIns = axios.create({
-	baseURL: isPrd ? process.env.HOST === 'http://mpc.weixiaolu.cn' : process.env.HOST === 'http://localhost:3000',//`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
+	baseURL: isPrd ? 'http://mpc.weixiaolu.cn' : 'http://localhost:3000',//`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
 	timeout: 1000
 })
 
