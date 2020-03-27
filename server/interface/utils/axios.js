@@ -8,8 +8,14 @@
 
 // export default axiosIns
 const axios = require('axios');
+const host = require('../../../config/host');
+const env = require('../../../config/env');
+
+const isPrd = env.isPrd;
+console.log('isPrd', isPrd)
+console.log('host', isPrd ? host.isPrd : host.isDev)
 const axiosIns = axios.create({
-	baseURL: `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
+	baseURL: isPrd ? host.isPrd : host.isDev,//`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
 	timeout: 1000
 })
 
