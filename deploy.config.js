@@ -16,7 +16,7 @@ module.exports = {
       host: '120.76.112.200',
       port: '44672',
       ref: 'origin/master',
-      repo: 'https://gitee.com/wenxinshuimu/meituan.git',
+      repo: 'https://15277951017:wxl666666@gitee.com/wenxinshuimu/meituan.git',
       path: '/www/mpc-meituan/production',
       'pre-deploy': 'sudo git fetch --all',
       'post-deploy': 'sudo npm install && npm run build && npm start && pm2 startOrRestar deploy.config.js --env production',
