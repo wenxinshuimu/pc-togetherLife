@@ -2,6 +2,7 @@ module.exports = {
   app: [{
     name: 'pc-meituan',
     script: 'server/index.js',
+    exec_mode: "fork",
     env: {
       COMMON_VARIABLE: 'true'
     },
