@@ -13,10 +13,10 @@ module.exports = {
   deploy: {
     production: {
       user: 'root',
-      host: '47.105.106.4',
+      host: '120.76.112.200',
       ref: 'origin/master',
       repo: '',
-      path: '/www/pc-meituan/production',
+      path: '/www/mpc-meituan/production',
       'pre-deploy': 'git fetch --all',
       'post-deploy': 'npm install && npm run build && npm start && pm2 startOrRestar deploy.config.js --env production',
 

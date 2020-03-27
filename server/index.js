@@ -55,7 +55,7 @@ async function start () {
     host = process.env.HOST || '127.0.0.1',
     port = process.env.PORT || 3002
   } = nuxt.options.server
-
+  console.log('port', port);
   await nuxt.ready()
   // Build in development
   if (config.dev) {
