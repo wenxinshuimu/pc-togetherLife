@@ -13,9 +13,9 @@ const env = require('../../../config/env');
 const isPrd = env.isPrd;
 console.log('isPrd', isPrd)
 const axiosIns = axios.create({
-	baseURL: isPrd ? 'http://mpc.weixiaolu.cn' : 'http://localhost:3000',//`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
+	baseURL: process.env.BASE_URL ,//`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
 	timeout: 1000
 })
 
-console.log('host',  process.env.HOST)
+console.log('host',  isPrd, process.env.NODE_ENV)
 module.exports = axiosIns;

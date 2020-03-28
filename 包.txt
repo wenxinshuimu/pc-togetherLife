@@ -4,3 +4,28 @@ npm install axios
 
 
 npm install koa-bodyparser koa-generic-session
+
+// const axios = require('axios');
+// const { URL } = require('@config/config');
+
+// export default class HTTP {
+// 	axiosPost (optopn) {
+// 		axios({
+// 			url: URL.API_BASE_URL + options.url,
+// 			methods: 'post',
+// 			data: optopn.data
+// 		}).then((res) => {
+// 			optopn.success(res);
+// 		}).catch((err) => {
+// 			optopn.error(err);
+// 		})
+// 	}
+// 	axiosGet (optopn) {
+// 		axios(URL.API_BASE_URL + options.url + sing)
+// 		.then((res) => {
+// 			optopn.success(res);
+// 		}).catch((err) => {
+// 			optopn.error(err);
+// 		})
+// 	}
+// }
