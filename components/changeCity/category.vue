@@ -24,6 +24,11 @@ import VueCookies from 'vue-cookies'
 Vue.use(VueCookies);
 import jspy from 'js-pinyin';
 import { URL } from '@/config/config'
+import SearchModel from '@/models/Search'
+import GeoModel from '@/models/Geo'
+const geoModel = new GeoModel();
+
+const searchModel = new SearchModel();
 export default {
   name: 'CategoryCity',
   data () {
@@ -39,7 +44,7 @@ export default {
   methods: {
     // 获取全部城市信息
     async getCitiesData () {
-      let {status, data: {city}} = await this.$axios.get(URL.API_BASE_URL + '/geo/city');
+      let {status, data: {city}} = await geoModel.getCity();
       let firstLetter;
       let letterPos;
       let temp = {};
@@ -71,16 +76,14 @@ export default {
       this.letterList.sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
     },
     async handleCityClick (item) {
+      let _self = this;
       this.$store.commit('geo/setPosition', item);
       this.$cookies.set('city', item.city);
       this.$cookies.set('province', item.province);
       
+      
       // 获取热门搜索数据
-      const {status: hotSearchStatus, data: {result}} = await this.$axios.get(URL.API_BASE_URL + '/search/hotSearch', {
-        params: {
-          city: this.$store.state.geo.position.city.replace('市', '')
-        }
-      });
+      const {status: hotSearchStatus, data: {result}} = await searchModel.gethotSearch(_self.$store.state.geo.position.city.replace('市', ''));
       this.$store.commit('home/setHotSearch', hotSearchStatus === 200 ? result : []);
       this.$router.push('/');
     }

@@ -27,7 +27,10 @@
 
 <script>
 import list from '@/components/cart/list.vue';
-import { URL } from '@/config/config'
+import CartModel from '@/models/Cart'
+import OrderModel from '@/models/Order'
+const cartModel = new CartModel();
+const orderModel = new OrderModel();
 export default {
 	components: {
 		list
@@ -49,11 +52,11 @@ export default {
 	},
 	methods: {
 		handleSubmit: async function() {
-			let { status, data: {code, id} } = await this.$axios.post(URL.API_BASE_URL + '/order/createOrder', {
-				count: this.cartList[0].count,
-				price: this.cartList[0].price,
-				id: this.cartNo
-			})
+			let { status, data: {code, id} } = await orderModel.createOrder(
+				this.cartList[0].count,
+				this.cartList[0].price,
+				this.cartNo
+			)
 
 			if (status === 200 && code === 0) {
 				this.$alert(`恭喜您已经成功下单，您的订单号为：${id}`, '下单成功', {confirmButtonText: '确定',
@@ -65,9 +68,7 @@ export default {
 		}
 	},
 	async asyncData(ctx) {
-		let { status, data: {code, data: {name, price}}} = await ctx.$axios.post(URL.API_BASE_URL + '/cart/getCart', {
-			id: ctx.query.id
-		})
+		let { status, data: {code, data: {name, price}}} = await cartModel.getCart(ctx.query.id)
 
 		if (status === 200 && code === 0 && name) {
 			return {

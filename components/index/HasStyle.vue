@@ -23,7 +23,10 @@
   </section>
 </template>
 <script>
-import { URL } from '@/config/config'
+
+import SearchModel from '@/models/Search'
+
+const searchModel = new SearchModel();
 export default {
   name: 'HasStyle',
   data () {
@@ -64,12 +67,7 @@ export default {
     // 获取列表数据
     async getListData (keyword) {
       if (!this.menu.length) {
-        let {status, data: {count, pois}} = await this.$axios.get(URL.API_BASE_URL + '/search/resultsByKeywords', {
-          params: {
-            keyword: keyword,
-            city: this.city
-          }
-        });
+        let {status, data: {count, pois}} = await searchModel.getResultsByKeywords(keyword, this.city);
         if (status === 200 &&  count > 0) {
           let res = pois.filter((item) => item.photos.length).map((item) => {
             return {

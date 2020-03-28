@@ -47,6 +47,8 @@
 <script>
 import list from '@/components/order/list.vue';
 import { URL } from '@/config/config'
+import OrderModel from '@/models/Order'
+const orderModel = new OrderModel();
 export default {
 	components: {
 		list
@@ -71,13 +73,41 @@ export default {
 			})
 		}
 	},
+	// async mounted () {
+	// 		let { status, data: {code, list} } = await orderModel.getOrders();
+	// 	if (status === 200 && code === 0 && list.length) {
+	// 		//return {
+	// 			this.list=list.map(item => {
+	// 				return {
+	// 					img: item.imgs.length ? item.imgs[0].url : 'default.png',
+	// 					name: item.name,
+	// 					count: 1,
+	// 					total: item.total,
+	// 					status: item.status,
+	// 					statusTxt: item.status === 0 ? '待付款' : '已付款'
+	// 				}
+	// 			}),
+	// 			this.curList= list.map(item => {
+	// 				return {
+	// 					img: item.imgs.length ? item.imgs[0].url : 'default.png',
+	// 					name: item.name,
+	// 					count: 1,
+	// 					total: item.total,
+	// 					status: item.status,
+	// 					statusTxt: item.status === 0 ? '待付款' : '已付款'
+	// 				}
+	// 			})
+	// 	//	}
+	// 	}
+	// },
 	methods: {
 		handleClick: function(tab) {
 			this.activeName = tab.name;
 		}
 	},
 	async asyncData(ctx) {
-		let { status, data: {code, list} } = await ctx.$axios.post(URL.API_BASE_URL + '/order/getOrders');
+		console.log('2222');
+		let { status, data: {code, list} } = await orderModel.getOrders();	// ctx.$axios.post(URL.API_BASE_URL + '/order/getOrders');
 		if (status === 200 && code === 0 && list.length) {
 			return {
 				list: list.map(item => {

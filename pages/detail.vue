@@ -36,7 +36,9 @@
 import crumbs from '@/components/detail/crumbs.vue';
 import info from '@/components/detail/info.vue';
 import list from '@/components/detail/list.vue';
-import { URL } from '@/config/config'
+import {URL} from '../config/config'
+import SearchModel from '@/models/Search'
+const searchModel = new SearchModel();
 export default {
 	components: {
 		crumbs,
@@ -50,13 +52,11 @@ export default {
 	},
 	async asyncData (ctx) {
 		let { keyword, type } = ctx.query;
-		let { status, data: {product, more: list, login}} = await ctx.$axios.get(URL.API_BASE_URL + '/search/products', {
-			params: {
+		let { status, data: {product, more: list, login}} = await searchModel.getProducts(
 				keyword,
 				type,
-				city: ctx.store.state.geo.position.city
-			}
-		})
+				ctx.store.state.geo.position.city
+		)
 
 		if (status === 200) {
 			return {

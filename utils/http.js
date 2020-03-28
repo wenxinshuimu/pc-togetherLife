@@ -1,11 +1,13 @@
 const axios = require('axios');
-const { URL } = require('@config/config');
+const qs = require('qs');
+const { URL } = require('../config/config');
 
 export default class HTTP {
 	axiosPost (options) {
+		console.log('进来了吗')
 		axios({
 			url: URL.API_BASE_URL + options.url,
-			methods: 'post',
+			method: 'POST',
 			data: options.data
 		}).then((res) => {
 			options.success(res);
@@ -14,7 +16,11 @@ export default class HTTP {
 		})
 	}
 	axiosGet (options) {
-		axios(URL.API_BASE_URL + options.url)
+		let url = URL.API_BASE_URL + options.url;
+		if (options.data) {
+			url += "?"+ qs.stringify(options.data);
+		}
+		axios(url)
 		.then((res) => {
 			options.success(res);
 		}).catch((err) => {

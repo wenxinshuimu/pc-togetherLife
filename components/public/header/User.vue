@@ -11,7 +11,9 @@
   </div>
 </template>
 <script>
-import { URL } from '@/config/config'
+import UserModel from '@/models/User'
+
+const userModel = new UserModel();
 export default {
   name: 'HeaderUser',
   data () {
@@ -20,7 +22,7 @@ export default {
     }
   },
   async mounted() {
-    const {status, data} = await this.$axios.get(URL.API_BASE_URL + '/users/getUser');
+    const {status, data} = await userModel.getUserData()
     if (status === 200) {
       if (data) {
         this.user = data.user;

@@ -26,7 +26,11 @@ import Crumbs from '../components/products/crumbs'
 import Category from '../components/products/category'
 import List from '@/components/products/list.vue'
 import MyMap from '@/components/public/map'
-import { URL } from '@/config/config'
+import SearchModel from '@/models/Search'
+import CategoryModel from '@/models/Category'
+
+const searchModel = new SearchModel();
+const categoryModel = new CategoryModel();
 export default {
   name: 'Product',
   data () {
@@ -49,18 +53,9 @@ export default {
     let keyword = ctx.query.keyword;
     let city = ctx.store.state.geo.position.city;
     // 获取关键字搜索结果
-		let { status, data: {count, pois}} = await ctx.$axios.get(URL.API_BASE_URL + '/search/resultsByKeywords', {
-			params: {
-				keyword,
-				city
-			}
-		})
+		let {status, data: {count, pois}} = await searchModel.getResultsByKeywords(keyword, city);
     // 获取城市对应数据
-		let { status: status2, data: {areas, types}} = await ctx.$axios.get(URL.API_BASE_URL + '/category/crumbs', {
-			params: { 
-				city
-			}
-		})
+		let { status: status2, data: {areas, types}} = await categoryModel.getCrumbs(city);
 		if ( status === 200 && count > 0 && status2 === 200) {
 			return {
         // 产品列表数据

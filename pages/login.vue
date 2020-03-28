@@ -25,7 +25,9 @@
 </template>
 <script>
 import CryptoJS from 'crypto-js';
-import { URL } from '@/config/config'
+
+import UserModel from '../models/User'
+const userModel = new UserModel();
 export default {
   name: 'Login',
   layout: 'blank',
@@ -40,10 +42,9 @@ export default {
   methods: {
     login () {
       let _self = this;
-      _self.$axios.post(URL.API_BASE_URL + '/users/signin', {
-        username: encodeURIComponent(_self.username),
-        password: CryptoJS.MD5(_self.password).toString()
-      }).then(({status, data}) => {
+      let name = encodeURIComponent(_self.username),
+          pwd = CryptoJS.MD5(_self.password).toString();
+      userModel.getSignin(name, pwd).then(({status, data}) => {
         if (status === 200) {
           if (data && data.code === 0) {
             location.href = '/';

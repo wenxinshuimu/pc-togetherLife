@@ -17,6 +17,11 @@ import VueCookies from 'vue-cookies'
 import {mapMutations,mapActions}from 'vuex'
 import { URL } from '@/config/config'
 Vue.use(VueCookies);
+import SearchModel from '@/models/Search'
+import GeoModel from '@/models/Geo'
+const geoModel = new GeoModel();
+
+const searchModel = new SearchModel();
 export default {
   name: 'HotCity',
   data () {
@@ -30,7 +35,7 @@ export default {
   methods: {
     // 获取热门省市
     async getHotCity () {
-      let {status, data: {hots}} = await this.$axios.get(URL.API_BASE_URL + '/geo/hotCity');
+      let {status, data: {hots}} = await geoModel.getHotCity();
       if (status === 200) {
         this.hotList = hots;
       }
@@ -41,7 +46,8 @@ export default {
     //...mapMutations('geo',['setPosition']),
     // 更改城市
     async handleCityClick (item) {
-      let data = [];
+      let data = [],
+          _self = this;
       data.push({
         city: item.name === '市辖区' ? item.province : item.name,
         province: item.province
@@ -50,14 +56,11 @@ export default {
       this.$cookies.set('city', data[0].city);
       this.$cookies.set('province', data[0].province);
       
+      
       // 获取热门搜索数据
-      const {status: hotSearchStatus, data: {result}} = await this.$axios.get(URL.API_BASE_URL + '/search/hotSearch', {
-        params: {
-          city: this.$store.state.geo.position.city.replace('市', '')
-        }
-      });
-      this.$store.commit('home/setHotSearch', hotSearchStatus === 200 ? result : []);
-     this.$router.push('/');
+      const {status: hotSearchStatus, data: {result}} = await searchModel.gethotSearch(_self.$store.state.geo.position.city.replace('市', ''));
+      _self.$store.commit('home/setHotSearch', hotSearchStatus === 200 ? result : []);
+      _self.$router.push('/');
     },
   }
 }

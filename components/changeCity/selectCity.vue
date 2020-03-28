@@ -34,6 +34,10 @@ import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies);
 import { URL } from '@/config/config'
+import SearchModel from '@/models/Search'
+import GeoModel from '@/models/Geo'
+const searchModel = new SearchModel();
+const geoModel = new GeoModel();
 export default {
   name: 'SelectCity',
   data() {
@@ -68,7 +72,7 @@ export default {
   methods: {
     // 获取所有省份信息
     async getProvinceDatas () {
-      let { status, data: {province}} = await this.$axios.get(URL.API_BASE_URL + '/geo/province');
+      let { status, data: {province}} = await geoModel.getProvince();
       if (status === 200) {
       	this.province = province.map(item => {
       		return {
@@ -80,7 +84,7 @@ export default {
     },
     // 获取省份对应城市信息
     async getCityDatas (newVal) {
-      let {status, data: {city}} = await this.$axios.get(URL.API_BASE_URL + `/geo/province/${newVal}`);
+      let {status, data: {city}} = await geoModel.getProvinceById(newVal);
       if (status === 200) {
         this.city = city.map((item) => {
           return {
@@ -100,7 +104,7 @@ export default {
       if (this.allCities.length) {
         cb(_self.allCities.filter((item) => item.value.indexOf(query) != -1));
       }else {
-        let {status, data: {city}} = await _self.$axios.get(URL.API_BASE_URL + '/geo/city');
+        let {status, data: {city}} = await await geoModel.getCity();
         if (status === 200) {
           _self.allCities = city.map(item => {
             return {
@@ -123,7 +127,8 @@ export default {
     },
     // 更新store数据
     async updataStoreData (cityVal, provinceVal) {
-      let data = [];
+      let data = [],
+          _self = this;
       data.push({
         city: cityVal,
         province: provinceVal
@@ -133,11 +138,7 @@ export default {
       this.$cookies.set('province', data[0].province);
       
       // 获取热门搜索数据
-      const {status: hotSearchStatus, data: {result}} = await this.$axios.get(URL.API_BASE_URL + '/search/hotSearch', {
-        params: {
-          city: this.$store.state.geo.position.city.replace('市', '')
-        }
-      });
+      const {status: hotSearchStatus, data: {result}} = await searchModel.gethotSearch(_self.$store.state.geo.position.city.replace('市', ''));
       this.$store.commit('home/setHotSearch', hotSearchStatus === 200 ? result : []);
       this.$router.push('/');
     }

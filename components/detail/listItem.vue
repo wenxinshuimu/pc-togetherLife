@@ -40,7 +40,8 @@
 </template>
 
 <script>
-import { URL } from '@/config/config'
+import CartModel from '@/models/Cart'
+const cartModel = new CartModel();
 export default {
 	props: {
 		meta: {
@@ -52,14 +53,13 @@ export default {
 	},
 	methods: {
 		createCart: async function() {
-			let { status, data: {code, id} } = await this.$axios.post(URL.API_BASE_URL + '/cart/createCart', {
-				id: Math.random().toString().slice(3, 9),
-				detail: {
-					name: this.meta.name,
-					price: this.meta.biz_ext.cost,
-					imgs: this.meta.photos
-				}
-			})
+			let cartId= Math.random().toString().slice(3, 9),
+					detail = {
+						name: this.meta.name,
+						price: this.meta.biz_ext.cost,
+						imgs: this.meta.photos
+					}
+			let { status, data: {code, id} } = await cartModel.createCart(cartId, detail)
 
 			if (status === 200 && code === 0) {
 				window.location.href = `/cart/?id=${id}`;

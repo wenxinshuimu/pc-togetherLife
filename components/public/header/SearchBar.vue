@@ -62,7 +62,8 @@ import _ from'lodash'
 import Geo from './Geo'
 import User from './User'
 import NavBar from './Nav'
-import { URL } from '@/config/config'
+import SearchModel from '@/models/Search'
+const searchModel = new SearchModel();
 export default {
   name: 'SearchBar',
   components: {
@@ -107,12 +108,7 @@ export default {
     // 输入事件
     handleInput: _.debounce ( async function() {
       this.sourseList = [];
-      let {status, data: {top}} = await this.$axios.get(URL.API_BASE_URL + '/search/top', {
-        params: {
-          input: this.search,
-          city: this.city
-        }
-      });
+      let {status, data: {top}} = await searchModel.getTop( this.search, this.city);
       this.sourseList = top.slice(0,9);
     },300)
   }
