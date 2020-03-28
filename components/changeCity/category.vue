@@ -23,6 +23,7 @@ import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies);
 import jspy from 'js-pinyin';
+import { URL } from '@/config/config'
 export default {
   name: 'CategoryCity',
   data () {
@@ -38,7 +39,7 @@ export default {
   methods: {
     // 获取全部城市信息
     async getCitiesData () {
-      let {status, data: {city}} = await this.$axios.get('/geo/city');
+      let {status, data: {city}} = await this.$axios.get(URL.API_BASE_URL + '/geo/city');
       let firstLetter;
       let letterPos;
       let temp = {};
@@ -75,7 +76,7 @@ export default {
       this.$cookies.set('province', item.province);
       
       // 获取热门搜索数据
-      const {status: hotSearchStatus, data: {result}} = await this.$axios.get('search/hotSearch', {
+      const {status: hotSearchStatus, data: {result}} = await this.$axios.get(URL.API_BASE_URL + '/search/hotSearch', {
         params: {
           city: this.$store.state.geo.position.city.replace('市', '')
         }

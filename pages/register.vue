@@ -41,6 +41,7 @@
 <script>
 
 import CryptoJS from 'crypto-js';
+import { URL } from '@/config/config'
 export default {
   layout: 'blank',
   data() {
@@ -99,7 +100,7 @@ export default {
       }
       if (!nameErrMsg && !emailErrMsg) {
         
-        _self.$axios.post('/users/verify', {
+        _self.$axios.post(URL.API_BASE_URL + '/users/verify', {
           username: encodeURIComponent(_self.ruleForm.name),
           email: _self.ruleForm.email
         }).then(({status, data}) => {
@@ -128,7 +129,7 @@ export default {
       let _self = this;
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
-          _self.$axios.post('/users/signup', {
+          _self.$axios.post(URL.API_BASE_URL + '/users/signup', {
             username: encodeURIComponent(_self.ruleForm.name), // 中文名字转字符编码
             password: CryptoJS.MD5(_self.ruleForm.password).toString(), // MD5加密
             email: _self.ruleForm.email,

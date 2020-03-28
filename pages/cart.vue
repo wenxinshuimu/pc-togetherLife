@@ -27,6 +27,7 @@
 
 <script>
 import list from '@/components/cart/list.vue';
+import { URL } from '@/config/config'
 export default {
 	components: {
 		list
@@ -48,7 +49,7 @@ export default {
 	},
 	methods: {
 		handleSubmit: async function() {
-			let { status, data: {code, id} } = await this.$axios.post('/order/createOrder', {
+			let { status, data: {code, id} } = await this.$axios.post(URL.API_BASE_URL + '/order/createOrder', {
 				count: this.cartList[0].count,
 				price: this.cartList[0].price,
 				id: this.cartNo
@@ -64,7 +65,7 @@ export default {
 		}
 	},
 	async asyncData(ctx) {
-		let { status, data: {code, data: {name, price}}} = await ctx.$axios.post('/cart/getCart', {
+		let { status, data: {code, data: {name, price}}} = await ctx.$axios.post(URL.API_BASE_URL + '/cart/getCart', {
 			id: ctx.query.id
 		})
 

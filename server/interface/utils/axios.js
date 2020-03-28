@@ -8,15 +8,9 @@
 
 // export default axiosIns
 const axios = require('axios');
-const env = require('../../../config/env');
-
-const isPrd = env.isPrd;
-console.log('isPrd', isPrd)
 const axiosIns = axios.create({
-	baseURL:'http://mpc.weixiaolu.cn',//`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
-	timeout: 1000,
-	headers: {'X-Custom-Header': 'foobar'}
+	baseURL: `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`,
+	timeout: 1000
 })
 
-console.log('host',  isPrd, process.env.NODE_ENV)
 module.exports = axiosIns;

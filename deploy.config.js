@@ -2,7 +2,6 @@ module.exports = {
   app: [{
     name: 'pc-meituan',
     script: 'server/index.js',
-    node_args: "--harmony",
     env: {
       COMMON_VARIABLE: 'true'
     },

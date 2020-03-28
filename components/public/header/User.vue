@@ -11,6 +11,7 @@
   </div>
 </template>
 <script>
+import { URL } from '@/config/config'
 export default {
   name: 'HeaderUser',
   data () {
@@ -19,7 +20,7 @@ export default {
     }
   },
   async mounted() {
-    const {status, data} = await this.$axios.get('/users/getUser');
+    const {status, data} = await this.$axios.get(URL.API_BASE_URL + '/users/getUser');
     if (status === 200) {
       if (data) {
         this.user = data.user;

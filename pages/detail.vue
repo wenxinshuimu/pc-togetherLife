@@ -36,6 +36,7 @@
 import crumbs from '@/components/detail/crumbs.vue';
 import info from '@/components/detail/info.vue';
 import list from '@/components/detail/list.vue';
+import { URL } from '@/config/config'
 export default {
 	components: {
 		crumbs,
@@ -49,7 +50,7 @@ export default {
 	},
 	async asyncData (ctx) {
 		let { keyword, type } = ctx.query;
-		let { status, data: {product, more: list, login}} = await ctx.$axios.get('/search/products', {
+		let { status, data: {product, more: list, login}} = await ctx.$axios.get(URL.API_BASE_URL + '/search/products', {
 			params: {
 				keyword,
 				type,

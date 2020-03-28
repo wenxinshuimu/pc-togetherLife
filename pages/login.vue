@@ -25,6 +25,7 @@
 </template>
 <script>
 import CryptoJS from 'crypto-js';
+import { URL } from '@/config/config'
 export default {
   name: 'Login',
   layout: 'blank',
@@ -39,7 +40,7 @@ export default {
   methods: {
     login () {
       let _self = this;
-      _self.$axios.post('/users/signin', {
+      _self.$axios.post(URL.API_BASE_URL + '/users/signin', {
         username: encodeURIComponent(_self.username),
         password: CryptoJS.MD5(_self.password).toString()
       }).then(({status, data}) => {

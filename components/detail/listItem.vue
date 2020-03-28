@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { URL } from '@/config/config'
 export default {
 	props: {
 		meta: {
@@ -51,7 +52,7 @@ export default {
 	},
 	methods: {
 		createCart: async function() {
-			let { status, data: {code, id} } = await this.$axios.post('/cart/createCart', {
+			let { status, data: {code, id} } = await this.$axios.post(URL.API_BASE_URL + '/cart/createCart', {
 				id: Math.random().toString().slice(3, 9),
 				detail: {
 					name: this.meta.name,

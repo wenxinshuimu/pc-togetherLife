@@ -15,6 +15,7 @@
 import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 import {mapMutations,mapActions}from 'vuex'
+import { URL } from '@/config/config'
 Vue.use(VueCookies);
 export default {
   name: 'HotCity',
@@ -29,7 +30,7 @@ export default {
   methods: {
     // 获取热门省市
     async getHotCity () {
-      let {status, data: {hots}} = await this.$axios.get('/geo/hotCity');
+      let {status, data: {hots}} = await this.$axios.get(URL.API_BASE_URL + '/geo/hotCity');
       if (status === 200) {
         this.hotList = hots;
       }
@@ -50,7 +51,7 @@ export default {
       this.$cookies.set('province', data[0].province);
       
       // 获取热门搜索数据
-      const {status: hotSearchStatus, data: {result}} = await this.$axios.get('search/hotSearch', {
+      const {status: hotSearchStatus, data: {result}} = await this.$axios.get(URL.API_BASE_URL + '/search/hotSearch', {
         params: {
           city: this.$store.state.geo.position.city.replace('市', '')
         }

@@ -22,16 +22,12 @@
 import SideMenu from '../components/index/Menu'
 import Life from '../components/index/Life'
 import HasStyle from '../components/index/HasStyle'
-import axios from 'axios'
 export default {
   name: 'Index',
   components: {
     SideMenu,
     Life,
     HasStyle
-  },
-  mounted () {
-    console.log(this.$axios);
   }
 }
 </script>
