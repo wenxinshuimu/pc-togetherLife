@@ -4,9 +4,6 @@ module.exports = {
   /*
   ** Headers of the page
   */
-  env: {
-  BASE_URL: process.env.BASE_URL,
-  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [

@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env BASE_URL=nuxt  NODE_ENV=development nodemon server/index.js --watch server --exec babel-node",
-    "build": "cross-env BASE_URL=http://mpc.weixiaolu.cn nuxt build",
-    "start": "cross-env BASE_URL=http://mpc.weixiaolu.cn NODE_ENV=production pm2 start server/index.js",
+    "build": "cross-env nuxt build",
+    "start": "cross-env NODE_ENV=production pm2 start server/index.js",
     "generate": "nuxt generate"
   },
   "dependencies": {
