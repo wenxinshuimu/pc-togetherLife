@@ -2,7 +2,7 @@
   <div class="m-nav">
     <ul class="nav">
       <li class="list-item">
-        <nuxt-link to="/my">我的美团</nuxt-link>
+        <nuxt-link to="/my">我的</nuxt-link>
           <dl>
             <dd><nuxt-link to="/order">我的订单</nuxt-link></dd>
             <dd><nuxt-link to="/order">我的收藏</nuxt-link></dd>
@@ -22,7 +22,7 @@
           <dd><nuxt-link to="/order">账户设置</nuxt-link></dd>
         </dl>
       </li>
-      <li class="list-item site">
+      <!-- <li class="list-item site">
         <nuxt-link to="/site">网站导航</nuxt-link>
         <div class="sub-menu">
           <dl class="hotel">
@@ -56,7 +56,7 @@
             </dd>
           </dl>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

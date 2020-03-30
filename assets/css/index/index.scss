@@ -7,7 +7,7 @@
       margin-left: 20px;
       color: #FFF;
       position: relative;
-      background: linear-gradient(-180deg, rgba(2, 181, 157, .85) 2%, rgba(22, 146, 183, .85) 100%);
+      background: linear-gradient(-180deg, rgba(2, 165, 181, 0.82) 2%, rgba(20, 180, 228, 0.85) 100%);
 
       dt {
         height: 50px;
@@ -25,9 +25,15 @@
         height: 26px;
         cursor: pointer;
 
-        &:hover {
-          background: rgba(255, 255, 255, .2);
+        // &:hover {
+        //   background: rgba(255, 255, 255, .2);
 
+        //   &>i {
+        //     opacity: 1;
+        //   }
+        // }
+        &.active {
+          background: rgba(255, 255, 255, .2);
           &>i {
             opacity: 1;
           }
@@ -190,7 +196,10 @@
           margin-top: 10px;
           cursor: pointer;
 
-          &:hover {
+          // &:hover {
+          //   color: #31BBAC;
+          // }
+          &.active {
             color: #31BBAC;
           }
         }

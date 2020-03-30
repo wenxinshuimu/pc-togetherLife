@@ -39,8 +39,8 @@
       <el-col :span="6">
         <div class="m-life-downloadapp">
           <img src="//s1.meituan.net/bs/fe-web-meituan/60ac9a0/img/download-qr.png" alt="二维码">
-          <p>美团APP手机版</p>
-          <h4><span class="red">元起</span>吃喝玩乐</h4>
+          <p>APP手机版</p>
+          <h4><span class="red">1元起</span>吃喝玩乐</h4>
         </div>
       </el-col>
     </el-row>

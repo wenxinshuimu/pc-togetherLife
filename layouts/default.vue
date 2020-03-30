@@ -8,7 +8,7 @@
         <nuxt />
       </el-main>
       <el-footer height="auto">
-        <public-footer></public-footer>
+        <!-- <public-footer></public-footer> -->
       </el-footer>
     </el-container>
   </div>

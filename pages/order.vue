@@ -106,7 +106,6 @@ export default {
 		}
 	},
 	async asyncData(ctx) {
-		console.log('2222');
 		let { status, data: {code, list} } = await orderModel.getOrders();	// ctx.$axios.post(URL.API_BASE_URL + '/order/getOrders');
 		if (status === 200 && code === 0 && list.length) {
 			return {

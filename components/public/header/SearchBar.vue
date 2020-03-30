@@ -2,7 +2,7 @@
   <div class="search-panel">
     <el-row :gutter="0" class="m-header-searchbar">
       <el-col :span="3" class="left">
-        <img src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团">
+        <!-- <img src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团"> -->
       </el-col>
       <el-col :span="15" class="center">
         <div class="wrapper">
@@ -39,19 +39,19 @@
           </a>
         </p>
         <ul class="nav">
-          <li><nuxt-link to="order" class="takeout">美团外卖</nuxt-link></li>
-          <li><nuxt-link to="order" class="movie">猫眼电影</nuxt-link></li>
-          <li><nuxt-link to="order" class="hotel">美团酒店</nuxt-link></li>
+          <li><nuxt-link to="order" class="takeout">外卖</nuxt-link></li>
+          <li><nuxt-link to="order" class="movie">电影</nuxt-link></li>
+          <li><nuxt-link to="order" class="hotel">酒店</nuxt-link></li>
           <li><nuxt-link to="order" class="apartment">名宿/公寓</nuxt-link></li>
-          <li><nuxt-link to="order" class="business">商家入驻</nuxt-link></li>
+          <!-- <li><nuxt-link to="order" class="business">商家入驻</nuxt-link></li> -->
         </ul>
       </el-col>
       <el-col :span="6" class="right">
-        <ul class="security">
+        <!-- <ul class="security">
           <li><i class="refund">随时退</i></li>
           <li><i class="free">不满意免单</i></li>
           <li><i class="overdue">过期退</i></li>
-        </ul>
+        </ul> -->
       </el-col>
     </el-row>
   </div>

@@ -5,7 +5,7 @@ export const actions = {
     const city = app.$cookiz.get('city'),
           province = app.$cookiz.get('province');
     if (city && province) {
-      console.log(city)  //每次请求获取cooie
+      //console.log(city)  //每次请求获取cooie
       const position = {
         city,
         province
@@ -17,7 +17,7 @@ export const actions = {
         // 提交mutations,设置值
         commit('geo/setPosition', status === 200 ? {city,province} : {city: '', province: ''});
      }
-     console.log(app.store.state.geo.position)
+     //console.log(app.store.state.geo.position)
     // 获取菜单数据
     const {status: statusMenu, data: {menu}} = await app.$axios.get('/geo/menu');
     commit('home/setMenu', statusMenu === 200 ? menu : []);
