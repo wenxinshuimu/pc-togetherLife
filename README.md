@@ -1,6 +1,6 @@
-# koa2-meiyuan
+# pc-togetherlife
 
-> My sensational Nuxt.js project
+> My pc-togetherlife Nuxt.js project
 
 ## Build Setup
 
